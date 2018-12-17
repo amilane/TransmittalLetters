@@ -12,11 +12,12 @@ namespace TransmitLetter
     {
       List<List<string>> dataTrm = new List<List<string>>();
       WritterReader writterReader = new WritterReader();
-      List<List<string>> vdrData = writterReader.Read(@"D:\#Projects\AGPZ\TRANSMITTAL VDR.xlsx", "VDR");
+      List<List<string>> vdrData = writterReader.Read(@"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL VDR.xlsx", "VDR");
 
       foreach (List<string> f in filesInfo)
       {
-        string packageCode = f[1].Split('-')[4].Split('.')[0];
+        string packageCode = f[1].Split('-')[4];
+        string docTypeCode = f[1].Split('-')[5];
         List<string> vdrDataRow = vdrData.FirstOrDefault(x => x[28].Contains(f[1]));
 
         List<string> trmRow = new List<string>();
@@ -35,7 +36,7 @@ namespace TransmitLetter
           trmRow.Add(vdrDataRow[40]);// doc date
           trmRow.Add(vdrDataRow[15]);// doc class
           trmRow.Add(f[2]);// rev
-          trmRow.Add(vdrDataRow[26]);// doc type code
+          trmRow.Add(docTypeCode);// doc type code
           trmRow.Add(f[5]);// count of sheets
           trmRow.Add(f[4]);// format
           trmRow.Add("pdf");// file format
@@ -56,7 +57,7 @@ namespace TransmitLetter
           trmRow.Add(null);// doc date
           trmRow.Add(null);// doc class
           trmRow.Add(f[2]);// rev
-          trmRow.Add(null);// doc type code
+          trmRow.Add(docTypeCode);// doc type code
           trmRow.Add(f[5]);// count of sheets
           trmRow.Add(f[4]);// format
           trmRow.Add("pdf");// file format

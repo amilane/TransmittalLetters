@@ -39,6 +39,7 @@ namespace TransmitLetter
 
     public void GenerateParametersAndValues()
     {
+      string transmitNumber = Path.Split('\\').Last();
       //WritterReader wr = new WritterReader();
       //var lol = wr.Read(Path,"UnitList");
       //string kek = lol[1][1];
@@ -48,6 +49,9 @@ namespace TransmitLetter
 
       DataTrm trm = new DataTrm();
       trm.dataTrm(info);
+
+      DataTrmCsv trmCsv = new DataTrmCsv();
+      trmCsv.dataTrmCsv(info, transmitNumber);
 
     }
   }
