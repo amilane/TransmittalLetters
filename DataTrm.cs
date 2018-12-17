@@ -26,7 +26,7 @@ namespace TransmitLetter
           trmRow.Add(vdrDataRow[35]); // PO NO
           trmRow.Add(null);//Tag No
           trmRow.Add(null);//supplier doc number
-          trmRow.Add(f[1]);//short name
+          trmRow.Add(f[7]);// doc No
           trmRow.Add(f[3]);// language
           trmRow.Add(vdrDataRow[30]);// doc title RU
           trmRow.Add(vdrDataRow[29]);// doc title EN
@@ -47,7 +47,7 @@ namespace TransmitLetter
           trmRow.Add(null); // PO NO
           trmRow.Add(null);//Tag No
           trmRow.Add(null);//supplier doc number
-          trmRow.Add(f[1]);//short name
+          trmRow.Add(f[7]);//doc No
           trmRow.Add(f[3]);// language
           trmRow.Add(null);// doc title RU
           trmRow.Add(null);// doc title EN

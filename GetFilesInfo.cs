@@ -31,12 +31,14 @@ namespace TransmitLetter
           string format;
           string pdfName;
           string[] splitPdfName;
+          string gcDocN;
 
           pdfName = f.Split('\\').Last();
           splitPdfName = pdfName.Split('_');
           shortName = splitPdfName[0];
           rev = splitPdfName[1];
           lang = splitPdfName[2].Split('.')[0];
+          gcDocN = String.Format("{0}-{1}-{2}-{3}-{4}.{5}-{6}", shortName.Split('-'));
 
           _native = files.FirstOrDefault(x => x.Contains(shortName) && !x.Contains(".pdf"));
           if (_native != null)
@@ -54,7 +56,8 @@ namespace TransmitLetter
             lang,
             format,
             countSheets,
-            native };
+            native,
+            gcDocN};
 
           filesInfo.Add(fileInfo);
         }

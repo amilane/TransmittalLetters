@@ -43,7 +43,7 @@ namespace TransmitLetter
         if (vdrCsvDataRow != null)
         {
           trmCsvRow.Add(null); //Row Status
-          trmCsvRow.Add(f[1]); //short name
+          trmCsvRow.Add(f[7]); //doc No
           trmCsvRow.Add(null); //Vendor doc no
           trmCsvRow.Add(vdrDataRow[30]); // doc title RU
           trmCsvRow.Add(vdrDataRow[29]); // doc title EN
@@ -99,7 +99,7 @@ namespace TransmitLetter
         else
         {
           trmCsvRow.Add(null); //Row Status
-          trmCsvRow.Add(f[1]); //short name
+          trmCsvRow.Add(f[7]); //doc No
           trmCsvRow.Add(null); //Vendor doc no
           trmCsvRow.Add(null); // doc title RU
           trmCsvRow.Add(null); // doc title EN

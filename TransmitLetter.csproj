@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CountSheetsFormatsPdf.cs" />
+    <Compile Include="DataCrs.cs" />
     <Compile Include="DataTrm.cs" />
     <Compile Include="DataTrmCsv.cs" />
     <Compile Include="DelegateCommand.cs" />

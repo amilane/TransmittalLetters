@@ -50,19 +50,26 @@ namespace TransmitLetter
       DataTrmCsv trmCsv = new DataTrmCsv();
       var dataTrmCsv = trmCsv.dataTrmCsv(info, transmitNumber);
 
+      DataCrs crs = new DataCrs();
+      var dataCrs = crs.dataCrs(info);
+
       WritterReader wr = new WritterReader();
 
       string fileName = String.Format("{0}.xlsx", transmitNumber);
       wr.Write(Path, @"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE.xlsx", "TRM Template 08-Feb-2018",
         8, 1,
         dataTrm,
-        fileName);
+        fileName,
+        transmitNumber);
 
       string fileCsvName = String.Format("{0}_CSV.xlsx", transmitNumber);
       wr.Write(Path, @"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE_CSV.xlsx", "Document Load",
         2, 1,
         dataTrmCsv,
-        fileCsvName);
+        fileCsvName,
+        transmitNumber);
+
+      wr.WriteCrs(Path, dataCrs, transmitNumber);
 
 
     }

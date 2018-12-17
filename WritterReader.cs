@@ -11,7 +11,14 @@ namespace TransmitLetter
 {
   class WritterReader
   {
-    public void Write(string Path, string TemplatePath, string SheetName, int startRow, int startColumn, List<List<string>> Data, string fileName)
+    public void Write(string Path,
+                      string TemplatePath,
+                      string SheetName,
+                      int startRow,
+                      int startColumn,
+                      List<List<string>> Data,
+                      string fileName,
+                      string transmitNumber)
     {
       var excel = new Application();
       Worksheet ws;
@@ -21,7 +28,7 @@ namespace TransmitLetter
       wbs = excel.Workbooks;
       wb = wbs.Open(TemplatePath);
       ws = wb.Sheets[SheetName];
-     
+
       foreach (List<string> row in Data)
       {
         int _startColums = startColumn;
@@ -32,8 +39,12 @@ namespace TransmitLetter
         }
         startRow++;
       }
-      //if(fileName )
 
+      if (!fileName.Contains("_CSV"))
+      {
+        ws.Cells[2, 3] = transmitNumber;
+        ws.Cells[1, 9] = DateTime.Now.ToString("d");
+      }
 
       string filePath = String.Format("{0}\\{1}", Path, fileName);
       wb.SaveAs(filePath);
@@ -46,6 +57,46 @@ namespace TransmitLetter
       Marshal.ReleaseComObject(wbs);
       Marshal.ReleaseComObject(excel);
     }
+
+
+    // Запись файлов CRS
+    public void WriteCrs(string Path,
+      List<List<string>> Data,
+      string transmitNumber)
+    {
+      var excel = new Application();
+      Worksheet ws;
+      Workbooks wbs;
+      Workbook wb;
+
+      wbs = excel.Workbooks;
+      wb = wbs.Open(@"Path To CRS Template");
+      ws = wb.Sheets["Comment Review Sheet"];
+
+      foreach (List<string> row in Data)
+      {
+        ws.Cells[7, 5] = transmitNumber;                //transmit no
+        ws.Cells[7, 9] = DateTime.Now.ToString("d");    //date
+        ws.Cells[22, 1] = row[1];                       //status
+        ws.Cells[22, 2] = row[2];                       //doc No
+        ws.Cells[22, 3] = row[3];                       //doc class
+        ws.Cells[22, 4] = row[4];                       //doc title
+        ws.Cells[22, 6] = row[5];                       //rev
+        string filePath = String.Format("{0}\\CRS\\{1}", Path, row[0]);
+        wb.SaveAs(filePath);
+      }
+
+      wbs.Close();
+      excel.Quit();
+
+      Marshal.ReleaseComObject(ws);
+      Marshal.ReleaseComObject(wb);
+      Marshal.ReleaseComObject(wbs);
+      Marshal.ReleaseComObject(excel);
+    }
+
+
+
 
     // Чтение таблицы Эксель: Путь, Лист
     public List<List<string>> Read(string Path, string SheetName)
@@ -67,7 +118,7 @@ namespace TransmitLetter
 
       List<List<string>> Table = new List<List<string>>();
 
-      for(int r = 1; r < rows; r++)
+      for (int r = 1; r < rows; r++)
       {
         List<string> Row = new List<string>();
 
@@ -77,7 +128,7 @@ namespace TransmitLetter
         }
         Table.Add(Row);
       }
-     
+
       wbs.Close();
       excel.Quit();
 
