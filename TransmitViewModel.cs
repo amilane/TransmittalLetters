@@ -44,7 +44,11 @@ namespace TransmitLetter
       //string kek = lol[1][1];
       //MessageBox.Show(kek);
       GetFilesInfo gf = new GetFilesInfo();
-      gf.getFiles(Path);
+      var info = gf.getFiles(Path);
+
+      DataTrm trm = new DataTrm();
+      trm.dataTrm(info);
+
     }
   }
 }

@@ -14,6 +14,7 @@ namespace TransmitLetter
     public List<List<string>> getFiles(string Path)
     {
       string[] files;
+      
       List<List<string>> filesInfo = new List<List<string>>();
 
       files = Directory.GetFiles(Path, "*", SearchOption.AllDirectories);
@@ -21,20 +22,30 @@ namespace TransmitLetter
       {
         if (f.Contains(".pdf"))
         {
-          
-          string pdfName = f;
-          string[] splitPdfName = pdfName.Split('_');
+          string _native;
+          string native = null;
+          string shortName;
+          string rev;
+          string lang;
+          string countSheets;
+          string format;
+          string pdfName;
+          string[] splitPdfName;
 
-          string shortName = splitPdfName[0];
-          string rev = splitPdfName[1];
-          string lang = splitPdfName[2].Split('.')[0];
+          pdfName = f.Split('\\').Last();
+          splitPdfName = pdfName.Split('_');
+          shortName = splitPdfName[0];
+          rev = splitPdfName[1];
+          lang = splitPdfName[2].Split('.')[0];
 
-          string native = files.FirstOrDefault(x => x.Contains(shortName) && !x.Contains(".pdf"));
+          _native = files.FirstOrDefault(x => x.Contains(shortName) && !x.Contains(".pdf"));
+          if (_native != null)
+            native = _native.Split('\\').Last();
 
           CountSheetsFormatsPdf csf = new CountSheetsFormatsPdf();
           List<string> pdfCountAndFormat = csf.countSheetsFormatsPdf(f);
-          string countSheets = pdfCountAndFormat[0];
-          string format = pdfCountAndFormat[1];
+          countSheets = pdfCountAndFormat[0];
+          format = pdfCountAndFormat[1];
 
           List<string> fileInfo = new List<string>{
             pdfName,
