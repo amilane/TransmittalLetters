@@ -11,10 +11,40 @@ namespace TransmitLetter
 {
   class WritterReader
   {
-    public void Write(string Path)
+    public void Write(string Path, string TemplatePath, string SheetName, int startRow, int startColumn, List<List<string>> Data, string fileName)
     {
-      
+      var excel = new Application();
+      Worksheet ws;
+      Workbooks wbs;
+      Workbook wb;
 
+      wbs = excel.Workbooks;
+      wb = wbs.Open(TemplatePath);
+      ws = wb.Sheets[SheetName];
+     
+      foreach (List<string> row in Data)
+      {
+        int _startColums = startColumn;
+        foreach (string v in row)
+        {
+          ws.Cells[startRow, _startColums] = v;
+          _startColums++;
+        }
+        startRow++;
+      }
+      //if(fileName )
+
+
+      string filePath = String.Format("{0}\\{1}", Path, fileName);
+      wb.SaveAs(filePath);
+
+      wbs.Close();
+      excel.Quit();
+
+      Marshal.ReleaseComObject(ws);
+      Marshal.ReleaseComObject(wb);
+      Marshal.ReleaseComObject(wbs);
+      Marshal.ReleaseComObject(excel);
     }
 
     // Чтение таблицы Эксель: Путь, Лист

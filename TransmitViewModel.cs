@@ -40,18 +40,30 @@ namespace TransmitLetter
     public void GenerateParametersAndValues()
     {
       string transmitNumber = Path.Split('\\').Last();
-      //WritterReader wr = new WritterReader();
-      //var lol = wr.Read(Path,"UnitList");
-      //string kek = lol[1][1];
-      //MessageBox.Show(kek);
+
       GetFilesInfo gf = new GetFilesInfo();
       var info = gf.getFiles(Path);
 
       DataTrm trm = new DataTrm();
-      trm.dataTrm(info);
+      var dataTrm = trm.dataTrm(info);
 
       DataTrmCsv trmCsv = new DataTrmCsv();
-      trmCsv.dataTrmCsv(info, transmitNumber);
+      var dataTrmCsv = trmCsv.dataTrmCsv(info, transmitNumber);
+
+      WritterReader wr = new WritterReader();
+
+      string fileName = String.Format("{0}.xlsx", transmitNumber);
+      wr.Write(Path, @"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE.xlsx", "TRM Template 08-Feb-2018",
+        8, 1,
+        dataTrm,
+        fileName);
+
+      string fileCsvName = String.Format("{0}_CSV.xlsx", transmitNumber);
+      wr.Write(Path, @"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE_CSV.xlsx", "Document Load",
+        2, 1,
+        dataTrmCsv,
+        fileCsvName);
+
 
     }
   }

@@ -18,7 +18,7 @@ namespace TransmitLetter
       int numberOfPages = reader.NumberOfPages;
 
       List<string> formats = new List<string>();
-      for (int i = 1; i < numberOfPages; i++)
+      for (int i = 1; i <= numberOfPages; i++)
       {
         PdfDictionary pageDict = reader.GetPageN(i);
         mediabox = pageDict.GetAsArray(PdfName.MEDIABOX);
