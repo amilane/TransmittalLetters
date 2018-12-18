@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 //collect info about pdf files
 // name, short name, revision, language, formats, countSheets, native

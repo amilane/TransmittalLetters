@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
+using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace TransmitLetter
 {
@@ -47,6 +45,11 @@ namespace TransmitLetter
       }
 
       string filePath = String.Format("{0}\\{1}", Path, fileName);
+
+      if (File.Exists(filePath))
+      {
+        File.Delete(filePath);
+      }
       wb.SaveAs(filePath);
 
       wbs.Close();
@@ -70,7 +73,7 @@ namespace TransmitLetter
       Workbook wb;
 
       wbs = excel.Workbooks;
-      wb = wbs.Open(@"Path To CRS Template");
+      wb = wbs.Open(@"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE_CRS.xlsx");
       ws = wb.Sheets["Comment Review Sheet"];
 
       foreach (List<string> row in Data)
@@ -82,8 +85,17 @@ namespace TransmitLetter
         ws.Cells[22, 3] = row[3];                       //doc class
         ws.Cells[22, 4] = row[4];                       //doc title
         ws.Cells[22, 6] = row[5];                       //rev
+
+        System.IO.Directory.CreateDirectory(String.Format("{0}\\CRS", Path));
+
         string filePath = String.Format("{0}\\CRS\\{1}", Path, row[0]);
+
+        if (File.Exists(filePath))
+        {
+          File.Delete(filePath);
+        }
         wb.SaveAs(filePath);
+        
       }
 
       wbs.Close();

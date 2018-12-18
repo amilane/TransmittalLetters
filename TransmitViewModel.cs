@@ -1,18 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace TransmitLetter
 {
   public class TransmitViewModel: INotifyPropertyChanged
   {
+    //Progress Bar
+    
+    private readonly BackgroundWorker worker;
+    private readonly ICommand instagateWorkCommand;
+    private int currentProgress;
 
+    public TransmitViewModel()
+    {
+      this.instagateWorkCommand = new DelegateCommand(o => this.worker.RunWorkerAsync(), o => !this.worker.IsBusy);
+    }
 
     // в Path вытаскиватся текущее значение из TextBox
     public event PropertyChangedEventHandler PropertyChanged;
