@@ -61,19 +61,24 @@ namespace TransmitLetter
       Marshal.ReleaseComObject(excel);
     }
 
+    
 
     // Запись файлов CRS
     public void WriteCrs(string Path,
       List<List<string>> Data,
       string transmitNumber)
     {
+      //путь к CRS
+      GetPathsToTemplates ptt = new GetPathsToTemplates();
+      string pathToCRS = ptt.getPathsToTemplates()[3];
+
       var excel = new Application();
       Worksheet ws;
       Workbooks wbs;
       Workbook wb;
 
       wbs = excel.Workbooks;
-      wb = wbs.Open(@"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE_CRS.xlsx");
+      wb = wbs.Open(pathToCRS);
       ws = wb.Sheets["Comment Review Sheet"];
 
       foreach (List<string> row in Data)

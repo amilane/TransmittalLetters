@@ -23,11 +23,14 @@ namespace TransmitLetter
 
     public List<List<string>> dataTrmCsv(List<List<string>> filesInfo, string transmitNumber)
     {
+      //путь к VDR
+      string pathToVDR = new GetPathsToTemplates().getPathsToTemplates()[0];
+
       List<List<string>> dataTrmCsv = new List<List<string>>();
       WritterReader writterReader = new WritterReader();
       List<List<string>> vdrCsvData =
-        writterReader.Read(@"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL VDR.xlsx", "VDR CSV");
-      List<List<string>> vdrData = writterReader.Read(@"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL VDR.xlsx", "VDR");
+        writterReader.Read(pathToVDR, "VDR CSV");
+      List<List<string>> vdrData = writterReader.Read(pathToVDR, "VDR");
 
       foreach (List<string> f in filesInfo)
       {

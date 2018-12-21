@@ -6,20 +6,9 @@ using System.Windows.Input;
 
 namespace TransmitLetter
 {
-  public class TransmitViewModel: INotifyPropertyChanged
+  public class TransmitViewModel : INotifyPropertyChanged
   {
-    //Progress Bar
-    
-    private readonly BackgroundWorker worker;
-    private readonly ICommand instagateWorkCommand;
-    private int currentProgress;
-
-    public TransmitViewModel()
-    {
-      this.instagateWorkCommand = new DelegateCommand(o => this.worker.RunWorkerAsync(), o => !this.worker.IsBusy);
-    }
-
-    // в Path вытаскиватся текущее значение из TextBox
+   // в Path вытаскиватся текущее значение из TextBox
     public event PropertyChangedEventHandler PropertyChanged;
     protected virtual void OnPropertyChanged([CallerMemberName]string prop = null)
     {
@@ -60,15 +49,18 @@ namespace TransmitLetter
 
       WritterReader wr = new WritterReader();
 
+      string pathToTRM = new GetPathsToTemplates().getPathsToTemplates()[1];
+      string pathToCSV = new GetPathsToTemplates().getPathsToTemplates()[2];
+
       string fileName = String.Format("{0}.xlsx", transmitNumber);
-      wr.Write(Path, @"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE.xlsx", "TRM Template 08-Feb-2018",
+      wr.Write(Path, pathToTRM, "TRM Template 08-Feb-2018",
         8, 1,
         dataTrm,
         fileName,
         transmitNumber);
 
       string fileCsvName = String.Format("{0}_CSV.xlsx", transmitNumber);
-      wr.Write(Path, @"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE_CSV.xlsx", "Document Load",
+      wr.Write(Path, pathToCSV, "Document Load",
         2, 1,
         dataTrmCsv,
         fileCsvName,

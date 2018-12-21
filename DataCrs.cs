@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TransmitLetter
 {
@@ -10,11 +11,15 @@ namespace TransmitLetter
     {
       List<List<string>> dataCrs = new List<List<string>>();
       WritterReader writterReader = new WritterReader();
-      List<List<string>> vdrData = writterReader.Read(@"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL VDR.xlsx", "VDR");
+
+      //путь к VRD
+      string pathToVDR = new GetPathsToTemplates().getPathsToTemplates()[0];
+
+      List<List<string>> vdrData = writterReader.Read(pathToVDR, "VDR");
 
       foreach (List<string> f in filesInfo)
       {
-        string excelDocName = f[0].Replace(".pdf", "_CRS.xlsx");
+        string excelDocName = Regex.Replace(f[0], ".pdf", "_CRS.xlsx", RegexOptions.IgnoreCase);
         List<string> vdrDataRow = vdrData.FirstOrDefault(x => x[28].Contains(f[1]));
 
         List<string> crsRow = new List<string>();

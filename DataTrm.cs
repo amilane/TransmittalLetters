@@ -7,9 +7,12 @@ namespace TransmitLetter
   {
     public List<List<string>> dataTrm(List<List<string>> filesInfo)
     {
+      //путь к VDR
+      string pathToVDR = new GetPathsToTemplates().getPathsToTemplates()[0];
+
       List<List<string>> dataTrm = new List<List<string>>();
       WritterReader writterReader = new WritterReader();
-      List<List<string>> vdrData = writterReader.Read(@"\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL VDR.xlsx", "VDR");
+      List<List<string>> vdrData = writterReader.Read(pathToVDR, "VDR");
 
       foreach (List<string> f in filesInfo)
       {

@@ -59,5 +59,17 @@ namespace TransmitLetter.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на \\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL VDR.xlsx
+        ///\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE.xlsx
+        ///\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE_CSV.xlsx
+        ///\\arena\ARMO-GROUP\ОБЪЕКТЫ\В_РАБОТЕ\41XX_AGPZ\30-РД\02-ГИП\TRANSMITTAL TEMPLATE_CRS.xlsx.
+        /// </summary>
+        internal static string PathsToTemplates {
+            get {
+                return ResourceManager.GetString("PathsToTemplates", resourceCulture);
+            }
+        }
     }
 }

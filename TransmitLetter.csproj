@@ -71,6 +71,7 @@
     <Compile Include="DataTrmCsv.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="GetFilesInfo.cs" />
+    <Compile Include="GetPathsToTemplates.cs" />
     <Compile Include="WritterReader.cs" />
     <Compile Include="TransmitViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -112,6 +113,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PathsToTemplates.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
