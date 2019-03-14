@@ -53,9 +53,9 @@ namespace TransmitLetter
           trmCsvRow.Add(vdrDataRow[40]); // doc date
           trmCsvRow.Add(f[2]); // rev
           trmCsvRow.Add(statusDict[vdrDataRow[33]]); // status
-          trmCsvRow.Add("CRECC"); // originator
+          trmCsvRow.Add("CPECC"); // originator
           trmCsvRow.Add("0055"); // contract number
-          trmCsvRow.Add(null); //vendor
+          trmCsvRow.Add("Joint-Stock Company\"ARMO - GROUP\""); //vendor
           trmCsvRow.Add(vdrDataRow[35]); // PO NO
           trmCsvRow.Add("4 - ГПЗ"); // work phase
           trmCsvRow.Add("4.1"); // work sub-phase
@@ -91,7 +91,7 @@ namespace TransmitLetter
           trmCsvRow.Add("Latest"); // doc status
           trmCsvRow.Add(null); //storage path
           trmCsvRow.Add(f[0]); //content
-          trmCsvRow.Add("Native Format"); //rendition name
+          trmCsvRow.Add(f[8]); //rendition name
           trmCsvRow.Add(f[6]); //rendition file
           trmCsvRow.Add(null); //link to
           trmCsvRow.Add(null); //stamped for construction
@@ -109,9 +109,9 @@ namespace TransmitLetter
           trmCsvRow.Add(null); // doc date
           trmCsvRow.Add(f[2]); // rev
           trmCsvRow.Add(null); // status
-          trmCsvRow.Add("CRECC"); // originator
+          trmCsvRow.Add("CPECC"); // originator
           trmCsvRow.Add("0055"); // contract number
-          trmCsvRow.Add(null); //vendor
+          trmCsvRow.Add("Joint-Stock Company\"ARMO - GROUP\""); //vendor
           trmCsvRow.Add(null); // PO NO
           trmCsvRow.Add("4 - ГПЗ"); // work phase
           trmCsvRow.Add("4.1"); // work sub-phase
@@ -147,7 +147,7 @@ namespace TransmitLetter
           trmCsvRow.Add("Latest"); // doc status
           trmCsvRow.Add(null); //storage path
           trmCsvRow.Add(f[0]); //content
-          trmCsvRow.Add("Native Format"); //rendition name
+          trmCsvRow.Add(f[8]); //rendition name
           trmCsvRow.Add(f[6]); //rendition file
           trmCsvRow.Add(null); //link to
           trmCsvRow.Add(null); //stamped for construction

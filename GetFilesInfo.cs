@@ -61,6 +61,7 @@ namespace TransmitLetter
             string[] splitPdfName;
             string gcDocN;
             string oldPdfName;
+            string nativeStatus = null;
 
             oldPdfName = f.Split('\\').Last();
             pdfName = Regex.Replace(oldPdfName, ".pdf", ".pdf", RegexOptions.IgnoreCase);
@@ -70,9 +71,13 @@ namespace TransmitLetter
             lang = splitPdfName[2].Split('.')[0];
             gcDocN = String.Format("{0}-{1}-{2}-{3}-{4}.{5}-{6}", shortName.Split('-'));
 
-            _native = files.FirstOrDefault(x => x.Contains(shortName) && !Regex.IsMatch(f, Regex.Escape(".pdf"), RegexOptions.IgnoreCase));
+            _native = files.FirstOrDefault(x => x.Contains(shortName) && !Regex.IsMatch(x, Regex.Escape(".pdf"), RegexOptions.IgnoreCase));
             if (_native != null)
+            {
               native = _native.Split('\\').Last();
+              nativeStatus = "Native Format";
+            }
+              
 
             CountSheetsFormatsPdf csf = new CountSheetsFormatsPdf();
             List<string> pdfCountAndFormat = csf.countSheetsFormatsPdf(f);
@@ -87,7 +92,8 @@ namespace TransmitLetter
               format,
               countSheets,
               native,
-              gcDocN};
+              gcDocN,
+              nativeStatus };
 
             filesInfo.Add(fileInfo);
           }
