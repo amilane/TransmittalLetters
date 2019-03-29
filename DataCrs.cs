@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+
 
 namespace TransmitLetter
 {
@@ -19,7 +19,8 @@ namespace TransmitLetter
 
       foreach (List<string> f in filesInfo)
       {
-        string excelDocName = Regex.Replace(f[0], ".pdf", "_CRS.xlsx", RegexOptions.IgnoreCase);
+        //string excelDocName = Regex.Replace(f[0], ".pdf", "_CRS.xlsx", RegexOptions.IgnoreCase);
+        string excelDocName = String.Format("{0}_{1}_{2}_CRS.xlsx", f[1], f[2], f[3]);
         List<string> vdrDataRow = vdrData.FirstOrDefault(x => x[28].Contains(f[1]));
 
         List<string> crsRow = new List<string>();

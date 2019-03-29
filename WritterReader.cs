@@ -130,8 +130,9 @@ namespace TransmitLetter
       Range usedRange = ws.UsedRange;
       object[,] values = usedRange.Value2;
 
-      int rows = values.GetUpperBound(0) + 1;
+      int rows = values.GetUpperBound(0);
       int cols = values.Length / rows;
+     
 
       List<List<string>> Table = new List<List<string>>();
 
@@ -139,7 +140,7 @@ namespace TransmitLetter
       {
         List<string> Row = new List<string>();
 
-        for (int c = 1; c < cols; c++)
+        for (int c = 1; c <= cols; c++)
         {
           Row.Add(Convert.ToString(values[r, c]));
         }

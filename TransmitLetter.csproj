@@ -67,6 +67,7 @@
     </ApplicationDefinition>
     <Compile Include="CountSheetsFormatsPdf.cs" />
     <Compile Include="DataCrs.cs" />
+    <Compile Include="DataDictionaries.cs" />
     <Compile Include="DataTrm.cs" />
     <Compile Include="DataTrmCsv.cs" />
     <Compile Include="DelegateCommand.cs" />
