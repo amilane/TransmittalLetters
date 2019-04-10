@@ -14,7 +14,7 @@ namespace TransmitLetter
 
 
 
-    public List<List<string>> dataTrmCsv(List<FileInfo> filesInfo, string transmitNumber)
+    public List<List<string>> dataTrmCsv(List<FileInfo> filesInfo, string transmitNumber, string _status, string _rev)
     {
       //путь к VDR
       string pathToVDR = new GetPathsToTemplates().getPathsToTemplates()[0];
@@ -33,8 +33,28 @@ namespace TransmitLetter
         List<string> vdrCsvDataRow = vdrCsvData.FirstOrDefault(x => x[0].Contains(fn.docNameForCSV));
         List<string> vdrDataRow = vdrData.FirstOrDefault(x => x[28].Contains(fn.shortName));
 
+        //Rev
+        string Rev;
+        if (_rev != null && _rev.Trim() != "") {
+          Rev = _rev;
+        } else {
+          Rev = fn.rev;
+        }
+
+        //Status
+        string Status = null;
+        if (_status != null && _status.Trim() != "" && statusDict.ContainsKey(_status)) {
+          Status = statusDict[_status];
+        } else if(vdrDataRow != null) {
+          Status = statusDict[vdrDataRow[33]];
+        }
+
+
         List<string> trmCsvRow = new List<string>();
-        if (vdrCsvDataRow != null) {
+        if (vdrCsvDataRow != null && vdrDataRow != null) {
+          
+
+
           trmCsvRow.Add(null); //Row Status
           trmCsvRow.Add(fn.gcDocN); //doc No
           trmCsvRow.Add(null); //Vendor doc no
@@ -44,8 +64,8 @@ namespace TransmitLetter
           trmCsvRow.Add(docTypeCodeRu); // doc type code RU
           trmCsvRow.Add(docTypeCodeEn); // doc type code EN
           trmCsvRow.Add(vdrDataRow[40]); // doc date
-          trmCsvRow.Add(fn.rev); // rev
-          trmCsvRow.Add(statusDict[vdrDataRow[33]]); // status
+          trmCsvRow.Add(Rev); // rev
+          trmCsvRow.Add(Status); // status
           trmCsvRow.Add("CPECC"); // originator
           trmCsvRow.Add("0055"); // contract number
           trmCsvRow.Add("Joint-Stock Company\"ARMO - GROUP\""); //vendor
@@ -98,8 +118,8 @@ namespace TransmitLetter
           trmCsvRow.Add(docTypeCodeRu); // doc type code RU
           trmCsvRow.Add(docTypeCodeEn); // doc type code EN
           trmCsvRow.Add(null); // doc date
-          trmCsvRow.Add(fn.rev); // rev
-          trmCsvRow.Add(null); // status
+          trmCsvRow.Add(Rev); // rev
+          trmCsvRow.Add(Status); // status
           trmCsvRow.Add("CPECC"); // originator
           trmCsvRow.Add("0055"); // contract number
           trmCsvRow.Add("Joint-Stock Company\"ARMO - GROUP\""); //vendor

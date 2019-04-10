@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TransmitLetter"
         mc:Ignorable="d"
-        Title="TRANSMITTAL LETTER CREATOR" Height="150" Width="500" Background="White" ResizeMode="NoResize" >
-  <Window.DataContext>
-    <local:TransmitViewModel/>
-  </Window.DataContext>
-  <Grid>
-    <TextBox 
+        Title="TRANSMITTAL LETTER CREATOR" Height="160" Width="500" Background="White" ResizeMode="NoResize" >
+    <Window.DataContext>
+        <local:TransmitViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <TextBox 
       HorizontalAlignment="Left" 
       Height="23" 
       Margin="10,41,0,0" 
@@ -18,17 +18,44 @@
       Text="{Binding Path}" 
       VerticalAlignment="Top" 
       Width="472"/>
-    <Label 
+        <Label 
       Content="Путь к папке с выпускаемыми документами:" 
       HorizontalAlignment="Left" 
       Margin="10,10,0,0" 
       VerticalAlignment="Top"/>
-    <Button 
+        <Button 
       Content="ОК" 
       HorizontalAlignment="Left" 
-      Margin="402,80,0,0" 
+      Margin="402,100,0,0" 
       VerticalAlignment="Top" 
       Width="80" Command="{Binding RetrieveParametersValuesCommand, Mode=OneWay}"/>
+        <TextBox 
+        HorizontalAlignment="Left" 
+        Height="23" 
+        Margin="10,100,0,0"
+        Text="{Binding Status}" 
+        TextWrapping="Wrap" 
+        VerticalAlignment="Top" 
+        Width="70"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.121,0.004"/>
+        <TextBox 
+            HorizontalAlignment="Left" 
+            Height="23" 
+            Margin="85,100,0,0"
+            Text="{Binding Rev}"
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" 
+            Width="70"/>
+        <Label Content="Rev:" HorizontalAlignment="Left" Margin="85,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.121,0.004"/>
+        <TextBox 
+            HorizontalAlignment="Left" 
+            Height="23" 
+            Margin="160,100,0,0"
+            Text="{Binding Date}"
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" 
+            Width="70"/>
+        <Label Content="Data:" HorizontalAlignment="Left" Margin="160,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.121,0.004"/>
 
-  </Grid>
+    </Grid>
 </Window>

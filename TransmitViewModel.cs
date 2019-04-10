@@ -25,6 +25,36 @@ namespace TransmitLetter
       }
     }
 
+    private string _Status;
+    public string Status {
+      get { return _Status; }
+      set {
+        _Status = value;
+        OnPropertyChanged(nameof(Status));
+      }
+    }
+
+    private string _Rev;
+    public string Rev {
+      get { return _Rev; }
+      set {
+        _Rev = value;
+        OnPropertyChanged(nameof(Rev));
+      }
+    }
+
+    private string _Date;
+    public string Date {
+      get { return _Date; }
+      set {
+        _Date = value;
+        OnPropertyChanged(nameof(Date));
+      }
+    }
+
+
+
+
     public ICommand RetrieveParametersValuesCommand {
       get {
         return new DelegateCommand(GenerateParametersAndValues);
@@ -39,13 +69,13 @@ namespace TransmitLetter
       var info = gf.getFiles(Path);
 
       DataTrm trm = new DataTrm();
-      var dataTrm = trm.dataTrm(info);
+      var dataTrm = trm.dataTrm(info, Status, Rev, Date);
 
       DataTrmCsv trmCsv = new DataTrmCsv();
-      var dataTrmCsv = trmCsv.dataTrmCsv(info, transmitNumber);
+      var dataTrmCsv = trmCsv.dataTrmCsv(info, transmitNumber, Status, Rev);
 
       DataCrs crs = new DataCrs();
-      var dataCrs = crs.dataCrs(info);
+      var dataCrs = crs.dataCrs(info, Status, Rev);
 
       WritterReader wr = new WritterReader();
 
