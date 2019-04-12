@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-
+using System.Windows;
 
 namespace TransmitLetter
 {
@@ -27,8 +28,22 @@ namespace TransmitLetter
 
       foreach (FileInfo fn in filesInfo) {
         string docTypeCode = fn.shortName.Split('-')[5];
-        string docTypeCodeRu = docTypesDictRu[docTypeCode];
-        string docTypeCodeEn = docTypesDictEn[docTypeCode];
+
+
+        string docTypeCodeRu = null;
+        string docTypeCodeEn = null;
+
+        if (!docTypesDictRu.ContainsKey(docTypeCode) || !docTypesDictEn.ContainsKey(docTypeCode))
+        {
+          string AlertMsg = String.Format("Неправильное наименование типа документа в имени файла:\n{0} ({1})", fn.electronicFilename, docTypeCode);
+          MessageBox.Show(AlertMsg, "Предупреждение");
+          Environment.Exit(0);
+        }
+        else
+        {
+          docTypeCodeRu = docTypesDictRu[docTypeCode];
+          docTypeCodeEn = docTypesDictEn[docTypeCode];
+        }
 
         List<string> vdrCsvDataRow = vdrCsvData.FirstOrDefault(x => x[0].Contains(fn.docNameForCSV));
         List<string> vdrDataRow = vdrData.FirstOrDefault(x => x[28].Contains(fn.shortName));
@@ -49,11 +64,23 @@ namespace TransmitLetter
           Status = statusDict[vdrDataRow[33]];
         }
 
+        string sectionRu = null;
+        string sectionEn = null;
 
+        if (!sectionDictRu.ContainsKey(fn.section) || !sectionDictEn.ContainsKey(fn.section))
+        {
+          string AlertMsg = String.Format("Неправильное наименование раздела в имени файла:\n{0} ({1})", fn.electronicFilename, fn.section);
+          MessageBox.Show(AlertMsg, "Предупреждение");
+          Environment.Exit(0);
+        }
+        else
+        {
+          sectionRu = sectionDictRu[fn.section];
+          sectionEn = sectionDictEn[fn.section];
+        }
+        
         List<string> trmCsvRow = new List<string>();
         if (vdrCsvDataRow != null && vdrDataRow != null) {
-          
-
 
           trmCsvRow.Add(null); //Row Status
           trmCsvRow.Add(fn.gcDocN); //doc No
@@ -81,8 +108,8 @@ namespace TransmitLetter
           trmCsvRow.Add(vdrCsvDataRow[7]); // title object EN
           trmCsvRow.Add(vdrCsvDataRow[8]); // title number RU
           trmCsvRow.Add(vdrCsvDataRow[9]); // title number EN
-          trmCsvRow.Add(sectionDictRu[fn.section]); // package name RU
-          trmCsvRow.Add(sectionDictEn[fn.section]); // package name EN
+          trmCsvRow.Add(sectionRu); // package name RU
+          trmCsvRow.Add(sectionEn); // package name EN
           trmCsvRow.Add(null); //sequence number
           trmCsvRow.Add(vdrCsvDataRow[13]); // doc class code
           trmCsvRow.Add(vdrCsvDataRow[14]); // discip RU
@@ -135,8 +162,8 @@ namespace TransmitLetter
           trmCsvRow.Add(null); // title object EN
           trmCsvRow.Add(null); // title number RU
           trmCsvRow.Add(null); // title number EN
-          trmCsvRow.Add(sectionDictRu[fn.section]); // package name RU
-          trmCsvRow.Add(sectionDictEn[fn.section]); // package name EN
+          trmCsvRow.Add(sectionRu); // package name RU
+          trmCsvRow.Add(sectionEn); // package name EN
           trmCsvRow.Add(null); //sequence number
           trmCsvRow.Add(null); // doc class code
           trmCsvRow.Add(null); // discip RU
