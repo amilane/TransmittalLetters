@@ -730,12 +730,14 @@ namespace TransmitLetter
       ["AOV"] = "AOV - Автоматизация отопления и вентиляции",
       ["EM"] = "EM - Электрика автоматизации отопления и вентиляции",
       ["OVK"] = "OVK - Отопление, вентиляция, кондиционирование",
+      ["ATP"] = "ATP - Система АТП",
     };
 
     public static Dictionary<string, string> sectionEn = new Dictionary<string, string> {
       ["AOV"] = "AOV - Heating and Ventilation Automation",
       ["EM"] = "EM - Heating and Ventilation Automation Electricity",
       ["OVK"] = "OVK - Heating, Ventilation, Air Conditioning",
+      ["ATP"] = "ATP - ATP system",
     };
 
 
