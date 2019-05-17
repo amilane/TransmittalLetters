@@ -25,7 +25,7 @@ namespace TransmitLetter
       }
     }
 
-    private string _Status;
+    private string _Status = "IFC";
     public string Status {
       get { return _Status; }
       set {
@@ -34,7 +34,7 @@ namespace TransmitLetter
       }
     }
 
-    private string _Rev;
+    private string _Rev = "00";
     public string Rev {
       get { return _Rev; }
       set {
@@ -43,7 +43,7 @@ namespace TransmitLetter
       }
     }
 
-    private string _Date;
+    private string _Date = DateTime.Now.Date.ToShortDateString();
     public string Date {
       get { return _Date; }
       set {

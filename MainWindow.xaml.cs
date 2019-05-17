@@ -10,6 +10,7 @@ namespace TransmitLetter
   {
     public MainWindow()
     {
+
       InitializeComponent();
     }
 

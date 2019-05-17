@@ -45,7 +45,7 @@ namespace TransmitLetter
           string docTitle = String.Format("{0} / {1}", vdrDataRow[30], vdrDataRow[29]);
           crsRow.Add(excelDocName); // excel name
           crsRow.Add(Status);// status
-          crsRow.Add(fn.gcDocN);// doc No
+          crsRow.Add(vdrDataRow[27]);// doc No
           crsRow.Add(vdrDataRow[15]);// doc class
           crsRow.Add(docTitle);// doc title RU/EN
           crsRow.Add(Rev);// rev
