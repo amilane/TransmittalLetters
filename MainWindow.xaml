@@ -5,57 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TransmitLetter"
         mc:Ignorable="d"
-        Title="TRANSMITTAL LETTER CREATOR" Height="160" Width="500" Background="White" ResizeMode="NoResize" >
-    <Window.DataContext>
-        <local:TransmitViewModel/>
-    </Window.DataContext>
-    <Grid>
-        <TextBox 
-      HorizontalAlignment="Left" 
-      Height="23" 
-      Margin="10,41,0,0" 
-      TextWrapping="Wrap" 
-      Text="{Binding Path}" 
-      VerticalAlignment="Top" 
-      Width="472"/>
-        <Label 
-      Content="Путь к папке с выпускаемыми документами:" 
-      HorizontalAlignment="Left" 
-      Margin="10,10,0,0" 
-      VerticalAlignment="Top"/>
-        <Button 
-      Content="ОК" 
-      HorizontalAlignment="Left" 
-      Margin="402,100,0,0" 
-      VerticalAlignment="Top" 
-      Width="80" Command="{Binding RetrieveParametersValuesCommand, Mode=OneWay}"/>
-        <TextBox 
-        HorizontalAlignment="Left" 
-        Height="23" 
-        Margin="10,100,0,0"
-        Text="{Binding Status}" 
-        TextWrapping="Wrap" 
-        VerticalAlignment="Top" 
-        Width="70"/>
-        <Label Content="Status:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.121,0.004"/>
-        <TextBox 
-            HorizontalAlignment="Left" 
-            Height="23" 
-            Margin="85,100,0,0"
-            Text="{Binding Rev}"
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="70"/>
-        <Label Content="Rev:" HorizontalAlignment="Left" Margin="85,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.121,0.004"/>
-        <TextBox 
-            HorizontalAlignment="Left" 
-            Height="23" 
-            Margin="160,100,0,0"
-            Text="{Binding Date}"
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Width="70"/>
-        <Label Content="Data:" HorizontalAlignment="Left" Margin="160,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.121,0.004"/>
+        Title="TRANSMITTAL LETTER CREATOR" Height="160" Width="600" Background="White" ResizeMode="NoResize" >
+  <Window.DataContext>
+    <local:TransmitViewModel/>
+  </Window.DataContext>
+  <Grid>
+    <Canvas>
 
-    </Grid>
+      <Label Content="Путь к папке с выпускаемыми документами:" Canvas.Top ="10" Canvas.Left="10"/>
+      <TextBox Canvas.Top ="40" Canvas.Left="10" Text="{Binding Path}" Width="574"/>
+
+      <Label Content="Status:" Canvas.Top ="70" Canvas.Left="10" />
+      <Label Content="Rev:" Canvas.Top ="70" Canvas.Left="90" />
+      <Label Content="Data:" Canvas.Top ="70" Canvas.Left="170" />
+
+      <TextBox Canvas.Top ="100" Canvas.Left="10" Text="{Binding Status}" Width="70"/>
+      <TextBox Canvas.Top ="100" Canvas.Left="90" Text="{Binding Rev}" Width="70"/>
+      <TextBox Canvas.Top ="100" Canvas.Left="170" Text="{Binding Date}" Width="70"/>
+
+      <Button Content="ОК" Canvas.Top ="100" Canvas.Left="504" Width="80" Command="{Binding RetrieveParametersValuesCommand, Mode=OneWay}"/>
+
+    </Canvas>
+
+  </Grid>
+
 </Window>

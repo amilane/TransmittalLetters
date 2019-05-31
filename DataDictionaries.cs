@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TransmitLetter
 {
@@ -726,19 +727,39 @@ namespace TransmitLetter
       ["РО"] = "РО - Lists of Data Sheets",
     };
 
-    public static Dictionary<string, string> sectionRu = new Dictionary<string, string> {
-      ["AOV"] = "AOV - Автоматизация отопления и вентиляции",
-      ["EM"] = "EM - Электрика автоматизации отопления и вентиляции",
-      ["OVK"] = "OVK - Отопление, вентиляция, кондиционирование",
-      ["ATP"] = "ATP - Система АТП",
-    };
 
-    public static Dictionary<string, string> sectionEn = new Dictionary<string, string> {
-      ["AOV"] = "AOV - Heating and Ventilation Automation",
-      ["EM"] = "EM - Heating and Ventilation Automation Electricity",
-      ["OVK"] = "OVK - Heating, Ventilation, Air Conditioning",
-      ["ATP"] = "ATP - ATP system",
-    };
+    public static string[] GetSectionDescriptions(string shortSection)
+    {
+      string ru = string.Empty;
+      string en = string.Empty;
+
+      string[] keys = { "AOV", "EM", "OVK", "ATP" };
+      string sKeyResult = keys.FirstOrDefault<string>(s => shortSection.Contains(s));
+
+      switch (sKeyResult)
+      {
+        case "AOV":
+          ru = "AOV - Автоматизация отопления и вентиляции";
+          en = "AOV - Heating and Ventilation Automation";
+          break;
+        case "EM":
+          ru = "EM - Электрика автоматизации отопления и вентиляции";
+          en = "EM - Heating and Ventilation Automation Electricity";
+          break;
+        case "OVK":
+          ru = "OVK - Отопление, вентиляция, кондиционирование";
+          en = "OVK - Heating, Ventilation, Air Conditioning";
+          break;
+        case "ATP":
+          ru = "ATP - Система АТП";
+          en = "ATP - ATP system";
+          break;
+      }
+
+      string[] result = { ru, en };
+
+      return result;
+    }
 
 
   }

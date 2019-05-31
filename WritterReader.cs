@@ -132,7 +132,7 @@ namespace TransmitLetter
 
             List<List<string>> Table = new List<List<string>>();
 
-            for (int r = 1; r < rows; r++) {
+            for (int r = 1; r <= rows; r++) {
                 List<string> Row = new List<string>();
 
                 for (int c = 1; c <= cols; c++) {

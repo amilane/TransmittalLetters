@@ -38,7 +38,7 @@ namespace TransmitLetter
 
       //Проверка правильности наименования 0055-CPC-ARM-4.1.3.20.101-AOV-ZH-0001_A1_ER.pdf
       //Regex rgxName = new Regex(@"^\d+-\w+-\w+-\d.\d.\d.\d+.\d+-\w+-\w+-\d+_\w\d_\w+.\w+$");
-      Regex rgxName = new Regex(@"^\d+(-\w+){2}-\d[.]\d[.]\d[.]\d+[.]\d+(-[A-Z]+){2,3}-\d+_\w+_[A-Z]+[.][A-Za-z]+");
+      Regex rgxName = new Regex(@"^\d+(-\w+){2}-\d[.]\d[.]\d[.]\d+[.][A-Z0-9]+(-[A-Z0-9]+){2,3}-\d+_\w+_[A-Z]+[.][0-9A-Za-z]+");
 
       string AlertMsg = "Пример правильного наименования файлов: 0055-CPC-ARM-4.1.3.20.101-AOV-ZH-0001_A1_ER.pdf, 0055-CPC-ARM-4.1.3.20.101-AOV-ZH-A-0001_A1_ER.pdf\n\n";
       string msg = "";

@@ -10,9 +10,6 @@ namespace TransmitLetter
     private readonly Dictionary<string, string> statusDict = DataDictionaries.status;
     private readonly Dictionary<string, string> docTypesDictRu = DataDictionaries.documentTypeRus;
     private readonly Dictionary<string, string> docTypesDictEn = DataDictionaries.documentTypeEn;
-    private readonly Dictionary<string, string> sectionDictRu = DataDictionaries.sectionRu;
-    private readonly Dictionary<string, string> sectionDictEn = DataDictionaries.sectionEn;
-
 
 
     public List<List<string>> dataTrmCsv(List<FileInfo> filesInfo, string transmitNumber, string _status, string _rev)
@@ -71,20 +68,9 @@ namespace TransmitLetter
           Status = statusDict[vdrDataRow[33]];
         }
 
-        string sectionRu = null;
-        string sectionEn = null;
-
-        if (!sectionDictRu.ContainsKey(fn.section) || !sectionDictEn.ContainsKey(fn.section))
-        {
-          string AlertMsg = String.Format("Неправильное наименование раздела в имени файла:\n{0} ({1})", fn.electronicFilename, fn.section);
-          MessageBox.Show(AlertMsg, "Предупреждение");
-          Environment.Exit(0);
-        }
-        else
-        {
-          sectionRu = sectionDictRu[fn.section];
-          sectionEn = sectionDictEn[fn.section];
-        }
+        string[] sectionDescriptions = DataDictionaries.GetSectionDescriptions(fn.section);
+        string sectionRu = sectionDescriptions[0];
+        string sectionEn = sectionDescriptions[1];
 
         string docNumber = null;
         string docTitleRu = null;
